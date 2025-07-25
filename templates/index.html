@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>🧙 Hospital Readmission Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>🧙 Predict Patient Readmission</h1>
+        <form action="/predict" method="POST">
+            <input type="number" name="age" placeholder="Age" required>
+            <input type="number" step="any" name="billing" placeholder="Billing Amount" required>
+
+            <select name="test" required>
+                <option value="" disabled selected>Select Test Results</option>
+                <option value="Abnormal">Abnormal</option>
+                <option value="Inconclusive">Inconclusive</option>
+                <option value="Normal">Normal</option>
+            </select>
+
+            <select name="gender" required>
+                <option value="" disabled selected>Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+
+            <select name="condition" required>
+                <option value="" disabled selected>Select Medical Condition</option>
+                <option value="Arthritis">Arthritis</option>
+                <option value="Asthma">Asthma</option>
+                <option value="Cancer">Cancer</option>
+                <option value="Diabetes">Diabetes</option>
+                <option value="Hypertension">Hypertension</option>
+                <option value="Obesity">Obesity</option>
+            </select>
+
+            <select name="admission" required>
+                <option value="" disabled selected>Select Admission Type</option>
+                <option value="Elective">Elective</option>
+                <option value="Emergency">Emergency</option>
+                <option value="Urgent">Urgent</option>
+            </select>
+
+            <select name="medication" required>
+                <option value="" disabled selected>Select Medication</option>
+                <option value="Aspirin">Aspirin</option>
+                <option value="Ibuprofen">Ibuprofen</option>
+                <option value="Lipitor">Lipitor</option>
+                <option value="Metformin">Metformin</option>
+                <option value="Paracetamol">Paracetamol</option>
+            </select>
+
+            <select name="blood" required>
+                <option value="" disabled selected>Select Blood Type</option>
+                <option value="A+">A+</option>
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B-">B-</option>
+                <option value="AB+">AB+</option>
+                <option value="AB-">AB-</option>
+                <option value="O+">O+</option>
+                <option value="O-">O-</option>
+            </select>
+
+            <button type="submit">Predict</button>
+        </form>
+
+        {% if prediction_text %}
+        <div class="result">
+            <h2>{{ prediction_text }}</h2>
+            <p>{{ probability_text }}</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
